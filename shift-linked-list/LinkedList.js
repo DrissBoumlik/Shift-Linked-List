@@ -5,17 +5,21 @@ class Node {
 	}
 }
 
-function initLinkedList(){	
-	let i0 = new Node(0), i1 = new Node(1), i2 = new Node(2), i3 = new Node(3), i4 = new Node(4), i5 = new Node(5);
-	i0.next = i1, i1.next = i2, i2.next = i3, i3.next = i4, i4.next = i5, i5.next = null;
-	return i0;
+function initLinkedList(limit = 5, numbers = null) {
+	let copy = head = 	new Node(numbers ? numbers[0] : 0);
+	for (i = 1; i < limit; i++) {
+		item = new Node(numbers ? numbers[i] : i);
+		copy.next = item;
+		copy = copy.next;
+	};
+	return head;
 }
 
-function printList(head){
+function printList(head) {
 	let output = '';
 	let item = head;
 	while (item != null) {
-		output += `${item.value} -> `;
+		output += `${item.value} ->\t`;
 		item = item.next;
 	}
 	output = output.substring(0, output.lastIndexOf('->'));
@@ -43,7 +47,6 @@ function shiftLinkedList(head, k) {
 	head = _head;
 	return head;
 }
-
 
 module.exports.Node = Node;
 module.exports.shiftLinkedList = shiftLinkedList;
